@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heritage Keepers - Preserving Cultural Stories</title>
+    <style>
+        :root {
+            --primary: #3a6351;
+            --secondary: #f2edd7;
+            --accent: #e48257;
+            --dark: #393e46;
+            --light: #f7f7f7;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--secondary);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .hero {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background-color: #d37247;
+            transform: translateY(-3px);
+        }
+        
+        .features {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .stories {
+            padding: 5rem 0;
+        }
+        
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .story-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .story-img {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .story-content {
+            padding: 20px;
+        }
+        
+        .story-info {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .story-card h3 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .upload-section {
+            padding: 5rem 0;
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+        }
+        
+        .upload-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            color: var(--dark);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .file-upload {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border: 2px dashed #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .file-upload i {
+            font-size: 3rem;
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+        
+        .file-upload p {
+            margin-bottom: 5px;
+        }
+        
+        .file-upload span {
+            font-size: 0.9rem;
+            color: #888;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            overflow: auto;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            width: 80%;
+            max-width: 700px;
+            border-radius: 8px;
+            animation: modalopen 0.5s;
+        }
+        
+        .close-btn {
+            color: #888;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close-btn:hover {
+            color: var(--dark);
+        }
+        
+        @keyframes modalopen {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/fac54f0bd8.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/47241416d7.js" crossorigin="anonymous"></script>
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-book-open"></i>
+                    Heritage Keepers
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#stories">Stories</a></li>
+                    <li><a href="#upload">Share Your Story</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#login" id="loginBtn">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-link" href="#">Features</a>
+      <a class="nav-link" href="#">Pricing</a>
+      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+    </div>
+  </div>
+</nav>
+    </div>
+
+    <section class="hero" id="home">
+        <h1>Preserving Cultural Heritage, One Story at a Time</h1>
+        <p>Join our community of storytellers, cultural guardians, and tradition bearers to ensure our rich heritage lives on for generations to come.</p>
+        <a href="#upload" class="btn">Share Your Story</a>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Heritage Keepers?</h2>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <h3>Capture Oral Traditions</h3>
+                    <p>Record and preserve the wisdom of elders and community storytellers before they are lost to time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Document Art Forms</h3>
+                    <p>Showcase traditional art, crafts, and cultural expressions with high-quality multimedia support.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Global Accessibility</h3>
+                    <p>Share your heritage with the world while maintaining control over how your stories are presented.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stories" id="stories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Stories</h2>
+            </div>
+            <div class="story-grid">
+                <div class="story-card">
+                    <div class="story-img" style="background-image: url('/api/placeholder/400/300');"></div>
+                    <div class="story-content">
+                        <div class="story-info">
+                            <span>By Elder Joseph Thomas</span>
+                            <span>Audio Story</span>
+                        </div>
+                        <h3>The Great Migration Tale</h3>
+                        <p>A story of how our ancestors journeyed across vast lands to find our current home.</p>
+                        <button class="btn" data-story="story1">Listen Now</button>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="story-img" style="background-image: url('/api/placeholder/400/300');"></div>
+                    <div class="story-content">
+                        <div class="story-info">
+                            <span>By Maria Gonzalez</span>
+                            <span>Video & Recipe</span>
+                        </div>
+                        <h3>Traditional Cooking Methods</h3>
+                        <p>Ancient cooking techniques that have been passed down through five generations.</p>
+                        <button class="btn" data-story="story2">Watch Now</button>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="story-img" style="background-image: url('/api/placeholder/400/300');"></div>
+                    <div class="story-content">
+                        <div class="story-info">
+                            <span>By Community Elders</span>
+                            <span>Interactive Gallery</span>
+                        </div>
+                        <h3>Seasonal Harvest Rituals</h3>
+                        <p>The ceremonies and practices that mark our agricultural calendar throughout the year.</p>
+                        <button class="btn" data-story="story3">Explore</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="upload-section" id="upload">
+        <div class="container">
+            <div class="section-title">
+                <h2>Share Your Heritage</h2>
+                <p>Help preserve cultural knowledge by contributing your stories, traditions, and art forms</p>
+            </div>
+            <div class="upload-container">
+                <form id="storyUploadForm">
+                    <div class="form-group">
+                        <label for="title">Story Title</label>
+                        <input type="text" id="title" class="form-control" placeholder="Give your story a meaningful title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="storyteller">Storyteller/Creator</label>
+                        <input type="text" id="storyteller" class="form-control" placeholder="Who is sharing this knowledge?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="culture">Cultural Origin</label>
+                        <input type="text" id="culture" class="form-control" placeholder="Which cultural tradition does this belong to?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="storyType">Story Type</label>
+                        <select id="storyType" class="form-control" required>
+                            <option value="">Select type of content</option>
+                            <option value="oral-story">Oral Story/Folktale</option>
+                            <option value="song">Traditional Song/Music</option>
+                            <option value="dance">Dance/Performance</option>
+                            <option value="craft">Craft/Art Technique</option>
+                            <option value="recipe">Traditional Recipe</option>
+                            <option value="ritual">Ceremony/Ritual</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" class="form-control" placeholder="Provide context and background for this cultural element" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Media Files</label>
+                        <div class="file-upload" id="fileUploadArea">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag files here or click to upload</p>
+                            <span>Support for audio, video, images, and documents</span>
+                            <input type="file" id="fileUpload" multiple style="display: none;">
+                        </div>
+                        <div id="fileList" style="margin-top: 10px;"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="permissions">Sharing Permissions</label>
+                        <select id="permissions" class="form-control" required>
+                            <option value="public">Public - Viewable by anyone</option>
+                            <option value="community">Community Only - Viewable by registered community members</option>
+                            <option value="private">Private - Viewable only by you and those you invite</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Submit Story</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Heritage Keepers</h3>
+                    <p>Preserving cultural heritage through technology for future generations to learn and connect with their roots.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#stories">Browse Stories</a></li>
+                        <li><a href="#upload">Share Your Story</a></li>
+                        <li><a href="#about">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Tutorial: How to Record</a></li>
+                        <li><a href="#">Technical Support</a></li>
+                        <li><a href="#">Community Guidelines</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Heritage Keepers. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Login to Heritage Keepers</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Login</button>
+                <p style="text-align: center; margin-top: 20px;">
+                    Don't have an account? <a href="#" id="showRegister">Register</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Register for Heritage Keepers</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regName">Full Name</label>
+                    <input type="text" id="regName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Email</label>
+                    <input type="email" id="regEmail" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Password</label>
+                    <input type="password" id="regPassword" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="community">Community/Cultural Affiliation</label>
+                    <input type="text" id="community" class="form-control" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Register</button>
+                <p style="text-align: center; margin-top: 20px;">
+                    Already have an account? <a href="#" id="showLogin">Login</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const loginBtn = document.getElementById('loginBtn');
+        const loginModal = document.getElementById('loginModal');
+        const registerModal = document.getElementById('registerModal');
+        const showRegister = document.getElementById('showRegister');
+        const showLogin = document.getElementById('showLogin');
+        const closeBtns = document.querySelectorAll('.close-btn');
+        
+        // Open login modal
+        loginBtn.addEventListener('click', function() {
+            loginModal.style.display = 'block';
+        });
+        
+        // Switch to register modal
+        showRegister.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginModal.style.display = 'none';
+            registerModal.style.display = 'block';
+        });
+        
+        // Switch to login modal
+        showLogin.addEventListener('click', function(e) {
+            e.preventDefault();
+            registerModal.style.display = 'none';
+            loginModal.style.display = 'block';
+        });
+        
+        // Close modals
+        closeBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                loginModal.style.display = 'none';
+                registerModal.style.display = 'none';
+            });
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target == loginModal) {
+                loginModal.style.display = 'none';
+            }
+            if (e.target == registerModal) {
+                registerModal.style.display = 'none';
+            }
+        });
+        
+        // File upload functionality
+        const fileUploadArea = document.getElementById('fileUploadArea');
+        const fileUploadInput = document.getElementById('fileUpload');
+        const fileList = document.getElementById('fileList');
+        
+        fileUploadArea.addEventListener('click', function() {
+            fileUploadInput.click();
+        });
+        
+        fileUploadArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            fileUploadArea.style.borderColor = '#3a6351';
+        });
+        
+        fileUploadArea.addEventListener('dragleave', function() {
+            fileUploadArea.style.borderColor = '#ddd';
+        });
+        
+        fileUploadArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            fileUploadArea.style.borderColor = '#ddd';
+            
+            if (e.dataTransfer.files.length > 0) {
+                fileUploadInput.files = e.dataTransfer.files;
+                updateFileList();
+            }
+        });
+        
+        fileUploadInput.addEventListener('change', updateFileList);
+        
+        function updateFileList() {
+            fileList.innerHTML = '';
+            
+            if (fileUploadInput.files.length > 0) {
+                for (let i = 0; i < fileUploadInput.files.length; i++) {
+                    const file = fileUploadInput.files[i];
+                    const fileItem = document.createElement('div');
+                    fileItem.innerHTML = `
+                        <p><strong>${file.name}</strong> (${formatFileSize(file.size)})</p>
+                    `;
+                    fileList.appendChild(fileItem);
+                }
+            }
+        }
+        
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' bytes';
+            else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+            else return (bytes / 1048576).toFixed(1) + ' MB';
+        }
+        
+        // Form submission
+        const storyUploadForm = document.getElementById('storyUploadForm');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        
+        storyUploadForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here we would normally send data to the server
+            // For demonstration purposes, show success message
+            alert('Thank you for sharing your story! It has been submitted for review.');
+            storyUploadForm.reset();
+            fileList.innerHTML = '';
+        });
+        
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here we would normally authenticate the user
+            alert('Login successful!');
+            loginModal.style.display = 'none';
+            loginForm.reset();
+        });
+        
+        registerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here we would normally register the user
+            alert('Registration successful! Welcome to Heritage Keepers.');
+            registerModal.style.display = 'none';
+            registerForm.reset();
+        });
+        
+        // Story buttons
+        const storyButtons = document.querySelectorAll('[data-story]');
+        
+        storyButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const storyId = this.getAttribute('data-story');
+                alert(`Loading story: ${storyId}. In a complete implementation, this would open the full story with audio/video/gallery content.`);
+            });
+        });
+    </script>
+</body>
+</html>
